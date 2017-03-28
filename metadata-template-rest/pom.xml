@@ -32,7 +32,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.irods</groupId>
-			<artifactId>base-service-impl</artifactId>
+			<artifactId>metadata-template-service-impl</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

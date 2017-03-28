@@ -10,5 +10,5 @@ else
 fi
 
 echo "running rest"
-java -jar metadata-template-rest-4.2.1.1-SNAPSHOT.jar
+java -jar metadata-template-rest-4.2.1.1-SNAPSHOT.jar > /var/log/console.log
 
