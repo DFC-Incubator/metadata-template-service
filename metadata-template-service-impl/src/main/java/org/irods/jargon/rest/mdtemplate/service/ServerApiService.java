@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.irods.jargon.rest.mdtemplate;
+package org.irods.jargon.rest.mdtemplate.service;
 
 import org.irods.jargon.core.exception.JargonException;
 import org.irods.jargon.core.pub.EnvironmentalInfoAO;
@@ -9,10 +9,10 @@ import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.rest.exception.IrodsRestException;
 import org.irods.jargon.rest.mdtemplate.model.Ping;
 import org.irods.jargon.rest.security.IrodsAuthentication;
+import org.irods.jargon.rest.security.SecurityContextHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -46,9 +46,7 @@ public class ServerApiService {
 			midTierOnly = false;
 		}
 
-		log.info("authentication:{}", SecurityContextHolder.getContext().getAuthentication());
-		IrodsAuthentication irodsAuthentication = (IrodsAuthentication) SecurityContextHolder.getContext()
-				.getAuthentication();
+		IrodsAuthentication irodsAuthentication = SecurityContextHelper.obtainIrodsAuthenticationFromContext();
 
 		float millis = 0.0f;
 		if (!midTierOnly) {

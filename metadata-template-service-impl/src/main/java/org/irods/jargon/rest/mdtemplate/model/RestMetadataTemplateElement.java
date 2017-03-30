@@ -13,11 +13,11 @@ import java.util.List;
 
 
 /**
- * MetadataTemplateElement
+ * RestMetadataTemplateElement
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-03-27T11:39:55.216-04:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-03-28T12:18:38.465-04:00")
 
-public class MetadataTemplateElement   {
+public class RestMetadataTemplateElement   {
   private String uuid = null;
 
   private String name = null;
@@ -118,7 +118,7 @@ public class MetadataTemplateElement   {
 
   private List<String> currentValue = new ArrayList<String>();
 
-  public MetadataTemplateElement uuid(String uuid) {
+  public RestMetadataTemplateElement uuid(String uuid) {
     this.uuid = uuid;
     return this;
   }
@@ -136,7 +136,7 @@ public class MetadataTemplateElement   {
     this.uuid = uuid;
   }
 
-  public MetadataTemplateElement name(String name) {
+  public RestMetadataTemplateElement name(String name) {
     this.name = name;
     return this;
   }
@@ -154,7 +154,7 @@ public class MetadataTemplateElement   {
     this.name = name;
   }
 
-  public MetadataTemplateElement i18nName(String i18nName) {
+  public RestMetadataTemplateElement i18nName(String i18nName) {
     this.i18nName = i18nName;
     return this;
   }
@@ -172,7 +172,7 @@ public class MetadataTemplateElement   {
     this.i18nName = i18nName;
   }
 
-  public MetadataTemplateElement description(String description) {
+  public RestMetadataTemplateElement description(String description) {
     this.description = description;
     return this;
   }
@@ -190,7 +190,7 @@ public class MetadataTemplateElement   {
     this.description = description;
   }
 
-  public MetadataTemplateElement i18nDescription(String i18nDescription) {
+  public RestMetadataTemplateElement i18nDescription(String i18nDescription) {
     this.i18nDescription = i18nDescription;
     return this;
   }
@@ -208,7 +208,7 @@ public class MetadataTemplateElement   {
     this.i18nDescription = i18nDescription;
   }
 
-  public MetadataTemplateElement required(Boolean required) {
+  public RestMetadataTemplateElement required(Boolean required) {
     this.required = required;
     return this;
   }
@@ -226,12 +226,12 @@ public class MetadataTemplateElement   {
     this.required = required;
   }
 
-  public MetadataTemplateElement elementType(List<ElementTypeEnum> elementType) {
+  public RestMetadataTemplateElement elementType(List<ElementTypeEnum> elementType) {
     this.elementType = elementType;
     return this;
   }
 
-  public MetadataTemplateElement addElementTypeItem(ElementTypeEnum elementTypeItem) {
+  public RestMetadataTemplateElement addElementTypeItem(ElementTypeEnum elementTypeItem) {
     this.elementType.add(elementTypeItem);
     return this;
   }
@@ -249,12 +249,12 @@ public class MetadataTemplateElement   {
     this.elementType = elementType;
   }
 
-  public MetadataTemplateElement validationStyle(List<ValidationStyleEnum> validationStyle) {
+  public RestMetadataTemplateElement validationStyle(List<ValidationStyleEnum> validationStyle) {
     this.validationStyle = validationStyle;
     return this;
   }
 
-  public MetadataTemplateElement addValidationStyleItem(ValidationStyleEnum validationStyleItem) {
+  public RestMetadataTemplateElement addValidationStyleItem(ValidationStyleEnum validationStyleItem) {
     this.validationStyle.add(validationStyleItem);
     return this;
   }
@@ -272,12 +272,12 @@ public class MetadataTemplateElement   {
     this.validationStyle = validationStyle;
   }
 
-  public MetadataTemplateElement validationOptions(List<String> validationOptions) {
+  public RestMetadataTemplateElement validationOptions(List<String> validationOptions) {
     this.validationOptions = validationOptions;
     return this;
   }
 
-  public MetadataTemplateElement addValidationOptionsItem(String validationOptionsItem) {
+  public RestMetadataTemplateElement addValidationOptionsItem(String validationOptionsItem) {
     this.validationOptions.add(validationOptionsItem);
     return this;
   }
@@ -295,12 +295,12 @@ public class MetadataTemplateElement   {
     this.validationOptions = validationOptions;
   }
 
-  public MetadataTemplateElement defaultValue(List<String> defaultValue) {
+  public RestMetadataTemplateElement defaultValue(List<String> defaultValue) {
     this.defaultValue = defaultValue;
     return this;
   }
 
-  public MetadataTemplateElement addDefaultValueItem(String defaultValueItem) {
+  public RestMetadataTemplateElement addDefaultValueItem(String defaultValueItem) {
     this.defaultValue.add(defaultValueItem);
     return this;
   }
@@ -318,12 +318,12 @@ public class MetadataTemplateElement   {
     this.defaultValue = defaultValue;
   }
 
-  public MetadataTemplateElement currentValue(List<String> currentValue) {
+  public RestMetadataTemplateElement currentValue(List<String> currentValue) {
     this.currentValue = currentValue;
     return this;
   }
 
-  public MetadataTemplateElement addCurrentValueItem(String currentValueItem) {
+  public RestMetadataTemplateElement addCurrentValueItem(String currentValueItem) {
     this.currentValue.add(currentValueItem);
     return this;
   }
@@ -350,18 +350,18 @@ public class MetadataTemplateElement   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MetadataTemplateElement metadataTemplateElement = (MetadataTemplateElement) o;
-    return Objects.equals(this.uuid, metadataTemplateElement.uuid) &&
-        Objects.equals(this.name, metadataTemplateElement.name) &&
-        Objects.equals(this.i18nName, metadataTemplateElement.i18nName) &&
-        Objects.equals(this.description, metadataTemplateElement.description) &&
-        Objects.equals(this.i18nDescription, metadataTemplateElement.i18nDescription) &&
-        Objects.equals(this.required, metadataTemplateElement.required) &&
-        Objects.equals(this.elementType, metadataTemplateElement.elementType) &&
-        Objects.equals(this.validationStyle, metadataTemplateElement.validationStyle) &&
-        Objects.equals(this.validationOptions, metadataTemplateElement.validationOptions) &&
-        Objects.equals(this.defaultValue, metadataTemplateElement.defaultValue) &&
-        Objects.equals(this.currentValue, metadataTemplateElement.currentValue);
+    RestMetadataTemplateElement restMetadataTemplateElement = (RestMetadataTemplateElement) o;
+    return Objects.equals(this.uuid, restMetadataTemplateElement.uuid) &&
+        Objects.equals(this.name, restMetadataTemplateElement.name) &&
+        Objects.equals(this.i18nName, restMetadataTemplateElement.i18nName) &&
+        Objects.equals(this.description, restMetadataTemplateElement.description) &&
+        Objects.equals(this.i18nDescription, restMetadataTemplateElement.i18nDescription) &&
+        Objects.equals(this.required, restMetadataTemplateElement.required) &&
+        Objects.equals(this.elementType, restMetadataTemplateElement.elementType) &&
+        Objects.equals(this.validationStyle, restMetadataTemplateElement.validationStyle) &&
+        Objects.equals(this.validationOptions, restMetadataTemplateElement.validationOptions) &&
+        Objects.equals(this.defaultValue, restMetadataTemplateElement.defaultValue) &&
+        Objects.equals(this.currentValue, restMetadataTemplateElement.currentValue);
   }
 
   @Override
@@ -372,7 +372,7 @@ public class MetadataTemplateElement   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MetadataTemplateElement {\n");
+    sb.append("class RestMetadataTemplateElement {\n");
     
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

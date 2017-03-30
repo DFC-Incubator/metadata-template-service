@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.irods.jargon.rest.mdtemplate.model.MetadataTemplate;
+import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate;
 
 
 
@@ -15,17 +15,17 @@ import org.irods.jargon.rest.mdtemplate.model.MetadataTemplate;
 /**
  * MetadataTemplateList
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-03-27T11:39:55.216-04:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-03-28T12:18:38.465-04:00")
 
 public class MetadataTemplateList   {
-  private List<MetadataTemplate> metadataTemplate = new ArrayList<MetadataTemplate>();
+  private List<RestMetadataTemplate> metadataTemplate = new ArrayList<RestMetadataTemplate>();
 
-  public MetadataTemplateList metadataTemplate(List<MetadataTemplate> metadataTemplate) {
+  public MetadataTemplateList metadataTemplate(List<RestMetadataTemplate> metadataTemplate) {
     this.metadataTemplate = metadataTemplate;
     return this;
   }
 
-  public MetadataTemplateList addMetadataTemplateItem(MetadataTemplate metadataTemplateItem) {
+  public MetadataTemplateList addMetadataTemplateItem(RestMetadataTemplate metadataTemplateItem) {
     this.metadataTemplate.add(metadataTemplateItem);
     return this;
   }
@@ -35,11 +35,11 @@ public class MetadataTemplateList   {
    * @return metadataTemplate
   **/
   @ApiModelProperty(value = "Metadata Template")
-  public List<MetadataTemplate> getMetadataTemplate() {
+  public List<RestMetadataTemplate> getMetadataTemplate() {
     return metadataTemplate;
   }
 
-  public void setMetadataTemplate(List<MetadataTemplate> metadataTemplate) {
+  public void setMetadataTemplate(List<RestMetadataTemplate> metadataTemplate) {
     this.metadataTemplate = metadataTemplate;
   }
 

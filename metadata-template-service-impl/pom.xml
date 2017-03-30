@@ -18,6 +18,11 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.irods.jargon</groupId>
+			<artifactId>metadata-templates</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.irods</groupId>
 			<artifactId>rest-support</artifactId>
 			<version>${project.version}</version>
@@ -180,7 +185,6 @@
 									cors.allow=true
 									ssl.negotiation.policy=CS_NEG_DONT_CARE
 									compute.checksum=true
-
 								</echo>
 							</tasks>
 						</configuration>

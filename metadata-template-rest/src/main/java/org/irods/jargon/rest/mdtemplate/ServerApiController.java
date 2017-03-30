@@ -2,6 +2,7 @@ package org.irods.jargon.rest.mdtemplate;
 
 import org.irods.jargon.rest.exception.IrodsRestException;
 import org.irods.jargon.rest.mdtemplate.model.Ping;
+import org.irods.jargon.rest.mdtemplate.service.ServerApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
