@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.irods.jargon.rest.mdtemplate.config;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 /**
  * Metadata template specific configuration, augments {@link RestConfiguration}
  * with settings for mdtemplates
- * 
+ *
  * @author mconway
  *
  */
@@ -37,7 +37,7 @@ public class MetadataTemplateConfiguration {
 		return publicTemplateRepositoryLocation;
 	}
 
-	public void setPublicTemplateRepositoryLocation(String publicTemplateRepositoryLocation) {
+	public void setPublicTemplateRepositoryLocation(final String publicTemplateRepositoryLocation) {
 		this.publicTemplateRepositoryLocation = publicTemplateRepositoryLocation;
 	}
 

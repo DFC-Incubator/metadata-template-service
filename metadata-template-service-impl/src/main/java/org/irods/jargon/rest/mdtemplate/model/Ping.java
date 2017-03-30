@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Ping {
 	private Float pingTime = null;
 
-	public Ping pingTime(Float pingTime) {
+	public Ping pingTime(final Float pingTime) {
 		this.pingTime = pingTime;
 		return this;
 	}
@@ -20,7 +20,7 @@ public class Ping {
 	/**
 	 * milliseconds to connect to iRODS and get a response from the perspective
 	 * of the mid-tier service
-	 * 
+	 *
 	 * @return pingTime
 	 **/
 	@ApiModelProperty(value = "milliseconds to connect to iRODS and get a response from the perspective of the mid-tier service")
@@ -28,12 +28,12 @@ public class Ping {
 		return pingTime;
 	}
 
-	public void setPingTime(Float pingTime) {
+	public void setPingTime(final Float pingTime) {
 		this.pingTime = pingTime;
 	}
 
 	@Override
-	public boolean equals(java.lang.Object o) {
+	public boolean equals(final java.lang.Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -41,7 +41,7 @@ public class Ping {
 			return false;
 		}
 		Ping ping = (Ping) o;
-		return Objects.equals(this.pingTime, ping.pingTime);
+		return Objects.equals(pingTime, ping.pingTime);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Ping {
 	 * Convert the given object to string with each line indented by 4 spaces
 	 * (except the first line).
 	 */
-	private String toIndentedString(java.lang.Object o) {
+	private String toIndentedString(final java.lang.Object o) {
 		if (o == null) {
 			return "null";
 		}

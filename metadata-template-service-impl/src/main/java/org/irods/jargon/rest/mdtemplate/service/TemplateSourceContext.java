@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
@@ -8,7 +8,7 @@ package org.irods.jargon.rest.mdtemplate.service;
  * needed to interact with the metadata template repository. This may not be
  * needed in all cases, but subclasses for particular implementations may be
  * created.
- * 
+ *
  * @author mconway
  *
  */

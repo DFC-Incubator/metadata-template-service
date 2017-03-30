@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
@@ -16,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 
+ *
  * Back end to server service (ping, environmental info)
- * 
+ *
  * @author mconway
  *
  */
@@ -32,7 +32,7 @@ public class ServerApiService {
 
 	/**
 	 * Do a ping of iRODS for timing/heartbeat
-	 * 
+	 *
 	 * @param midTierOnly
 	 *            <code>boolean</code> that indicates whether to go back to the
 	 *            iRODS server (<code>true</code> means just ping the mid-tier)
@@ -80,7 +80,7 @@ public class ServerApiService {
 		return irodsAccessObjectFactory;
 	}
 
-	public void setIrodsAccessObjectFactory(IRODSAccessObjectFactory irodsAccessObjectFactory) {
+	public void setIrodsAccessObjectFactory(final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
 	}
 

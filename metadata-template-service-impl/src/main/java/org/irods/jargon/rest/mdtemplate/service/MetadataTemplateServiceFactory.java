@@ -7,7 +7,7 @@ import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
 /**
  * Factory for metadata template services. This enhances the ability to plug in
  * new implementations in an easily testable manner
- * 
+ *
  * @author mconway
  *
  * @param <T>
@@ -19,7 +19,7 @@ public interface MetadataTemplateServiceFactory<T extends TemplateSourceContext>
 
 	/**
 	 * Obtain the metadata resolver that can locate and process templates
-	 * 
+	 *
 	 * @param irodsAccount
 	 *            {@link IRODSAccount} with iRODS login information
 	 * @param templateSourceContext

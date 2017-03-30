@@ -1,11 +1,12 @@
 /**
- * 
+ *
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
+import org.irods.jargon.rest.mdtemplate.exception.MetadataTemplateException;
 import org.irods.jargon.rest.mdtemplate.model.MetadataTemplateList;
 import org.irods.jargon.rest.mdtemplate.model.utils.TemplateModelTransformer;
 import org.irods.jargon.rest.security.IrodsAuthentication;
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Service facade for metadata template resolver
- * 
+ *
  * @author mconway
  *
  */
@@ -36,7 +37,8 @@ public class MetadataTemplateResolverApiService {
 	@Autowired
 	private MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory;
 
-	public MetadataTemplateList listPublicTemplates() throws MetadataTemplateProcessingException {
+	public MetadataTemplateList listPublicTemplates()
+			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("listPublicTemplates()");
 		IrodsAuthentication irodsAuthentication = SecurityContextHelper.obtainIrodsAuthenticationFromContext();
 		AbstractMetadataResolver resolver = metadataTemplateServiceFactory
@@ -50,7 +52,7 @@ public class MetadataTemplateResolverApiService {
 	}
 
 	public void setMetadataTemplateServiceFactory(
-			MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory) {
+			final MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory) {
 		this.metadataTemplateServiceFactory = metadataTemplateServiceFactory;
 	}
 
@@ -58,7 +60,7 @@ public class MetadataTemplateResolverApiService {
 		return irodsAccessObjectFactory;
 	}
 
-	public void setIrodsAccessObjectFactory(IRODSAccessObjectFactory irodsAccessObjectFactory) {
+	public void setIrodsAccessObjectFactory(final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
 	}
 

@@ -11,7 +11,6 @@ import java.util.UUID;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.DestinationEnum;
 import org.irods.jargon.metadatatemplate.ElementTypeEnum;
-import org.irods.jargon.metadatatemplate.FormBasedMetadataTemplate;
 import org.irods.jargon.metadatatemplate.MetadataElement;
 import org.irods.jargon.metadatatemplate.MetadataTemplate;
 import org.irods.jargon.metadatatemplate.SourceEnum;
@@ -45,11 +44,11 @@ public class SampleTemplateBuilders {
 	/**
 	 * Currently this is a basic skeleton, eventually will be a well formed DC
 	 * metadata template
-	 * 
+	 *
 	 * @return {@link MetadataTemplate} of a public, optional dublin core set
 	 */
 	public MetadataTemplate buildDublinCoreMetadataTemplate() {
-		MetadataTemplate dc = new FormBasedMetadataTemplate();
+		MetadataTemplate dc = new MetadataTemplate();
 		dc.setAuthor("me");
 		dc.setCreated(new Date());
 		dc.setModified(new Date());

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
@@ -19,14 +19,15 @@ import org.springframework.stereotype.Component;
  * Interface definition for a factory of metadata template services. This allows
  * easier creation of metadata template services in a spring fashion, and makes
  * it easier to mock out services
- * 
+ *
  * FIXME: refactor into base metadata template code (in interface layer) - mcc
- * 
+ *
  * @author mconway
  *
  */
 @Component
-public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSourceContext> implements MetadataTemplateServiceFactory<T> {
+public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSourceContext>
+		implements MetadataTemplateServiceFactory<T> {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -36,12 +37,17 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 	@Autowired
 	private MetadataTemplateConfiguration metadataTemplateConfiguration;
 
-	/* (non-Javadoc)
-	 * @see org.irods.jargon.rest.mdtemplate.service.MetadataTemplateServiceFactory#instanceMetadataResolver(org.irods.jargon.core.connection.IRODSAccount, T)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.irods.jargon.rest.mdtemplate.service.MetadataTemplateServiceFactory#
+	 * instanceMetadataResolver(org.irods.jargon.core.connection.IRODSAccount,
+	 * T)
 	 */
 	@Override
-	public AbstractMetadataResolver instanceMetadataResolver(IRODSAccount irodsAccount, T templateSourceContext)
-			throws MetadataTemplateProcessingException {
+	public AbstractMetadataResolver instanceMetadataResolver(final IRODSAccount irodsAccount,
+			final T templateSourceContext) throws MetadataTemplateProcessingException {
 		log.info("instanceMetadataResolver()");
 		if (irodsAccount == null) {
 			throw new IllegalArgumentException("null irodsAccount");
@@ -62,7 +68,7 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 		return irodsAccessObjectFactory;
 	}
 
-	public void setIrodsAccessObjectFactory(IRODSAccessObjectFactory irodsAccessObjectFactory) {
+	public void setIrodsAccessObjectFactory(final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
 	}
 
@@ -70,7 +76,7 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 		return metadataTemplateConfiguration;
 	}
 
-	public void setMetadataTemplateConfiguration(MetadataTemplateConfiguration metadataTemplateConfiguration) {
+	public void setMetadataTemplateConfiguration(final MetadataTemplateConfiguration metadataTemplateConfiguration) {
 		this.metadataTemplateConfiguration = metadataTemplateConfiguration;
 	}
 

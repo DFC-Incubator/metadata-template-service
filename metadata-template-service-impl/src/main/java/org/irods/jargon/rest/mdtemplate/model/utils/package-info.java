@@ -1,7 +1,7 @@
 
 /**
  * Utilities for dealing with metadata template models
- * 
+ *
  * @author mconway
  *
  */
