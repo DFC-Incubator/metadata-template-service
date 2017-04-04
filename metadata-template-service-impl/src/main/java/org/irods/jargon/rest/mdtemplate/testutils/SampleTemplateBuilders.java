@@ -47,7 +47,7 @@ public class SampleTemplateBuilders {
 	 *
 	 * @return {@link MetadataTemplate} of a public, optional dublin core set
 	 */
-	public MetadataTemplate buildDublinCoreMetadataTemplate() {
+	public static MetadataTemplate buildDublinCoreMetadataTemplate() {
 		MetadataTemplate dc = new MetadataTemplate();
 		dc.setAuthor("me");
 		dc.setCreated(new Date());

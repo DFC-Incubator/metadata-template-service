@@ -37,10 +37,16 @@ public class MetadataTemplateResolverApiService {
 	@Autowired
 	private MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory;
 
+	/**
+	 * Hook for obtaining security context info
+	 */
+	@Autowired
+	private SecurityContextHelper securityContextHelper;
+
 	public MetadataTemplateList listPublicTemplates()
 			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("listPublicTemplates()");
-		IrodsAuthentication irodsAuthentication = SecurityContextHelper.obtainIrodsAuthenticationFromContext();
+		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
 		AbstractMetadataResolver resolver = metadataTemplateServiceFactory
 				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
 		return TemplateModelTransformer.restMetadataTemplateListFromBaseModel(resolver.listPublicTemplates());
@@ -62,6 +68,14 @@ public class MetadataTemplateResolverApiService {
 
 	public void setIrodsAccessObjectFactory(final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
+	}
+
+	public SecurityContextHelper getSecurityContextHelper() {
+		return securityContextHelper;
+	}
+
+	public void setSecurityContextHelper(SecurityContextHelper securityContextHelper) {
+		this.securityContextHelper = securityContextHelper;
 	}
 
 }

@@ -30,6 +30,9 @@ public class ServerApiService {
 	@Autowired
 	private IRODSAccessObjectFactory irodsAccessObjectFactory;
 
+	@Autowired
+	private SecurityContextHelper securityContextHelper;
+
 	/**
 	 * Do a ping of iRODS for timing/heartbeat
 	 *
@@ -46,7 +49,7 @@ public class ServerApiService {
 			midTierOnly = false;
 		}
 
-		IrodsAuthentication irodsAuthentication = SecurityContextHelper.obtainIrodsAuthenticationFromContext();
+		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
 
 		float millis = 0.0f;
 		if (!midTierOnly) {
@@ -82,6 +85,14 @@ public class ServerApiService {
 
 	public void setIrodsAccessObjectFactory(final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
+	}
+
+	public SecurityContextHelper getSecurityContextHelper() {
+		return securityContextHelper;
+	}
+
+	public void setSecurityContextHelper(SecurityContextHelper securityContextHelper) {
+		this.securityContextHelper = securityContextHelper;
 	}
 
 }
