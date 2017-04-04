@@ -39,7 +39,7 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.irods.jargon.rest.mdtemplate.service.MetadataTemplateServiceFactory#
 	 * instanceMetadataResolver(org.irods.jargon.core.connection.IRODSAccount,

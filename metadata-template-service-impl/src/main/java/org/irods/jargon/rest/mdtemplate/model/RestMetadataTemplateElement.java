@@ -119,7 +119,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * uuid for the element
-	 * 
+	 *
 	 * @return uuid
 	 **/
 	@ApiModelProperty(required = true, value = "uuid for the element")
@@ -138,7 +138,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * display name of the element
-	 * 
+	 *
 	 * @return name
 	 **/
 	@ApiModelProperty(required = true, value = "display name of the element")
@@ -157,7 +157,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * display name of the element as an internationalized property
-	 * 
+	 *
 	 * @return i18nName
 	 **/
 	@ApiModelProperty(required = true, value = "display name of the element as an internationalized property")
@@ -176,7 +176,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * free form description in English for user prompt
-	 * 
+	 *
 	 * @return description
 	 **/
 	@ApiModelProperty(required = true, value = "free form description in English for user prompt")
@@ -195,7 +195,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * free form description as an internationalized property
-	 * 
+	 *
 	 * @return i18nDescription
 	 **/
 	@ApiModelProperty(required = true, value = "free form description as an internationalized property")
@@ -214,7 +214,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * if set this element is required in the template
-	 * 
+	 *
 	 * @return required
 	 **/
 	@ApiModelProperty(required = true, value = "if set this element is required in the template")
@@ -238,7 +238,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * describes the data type the element contains, for validation and UI hints
-	 * 
+	 *
 	 * @return elementType
 	 **/
 	@ApiModelProperty(required = true, value = "describes the data type the element contains, for validation and UI hints")
@@ -262,7 +262,7 @@ public class RestMetadataTemplateElement {
 
 	/**
 	 * describes how validation will be done on the element
-	 * 
+	 *
 	 * @return validationStyle
 	 **/
 	@ApiModelProperty(required = true, value = "describes how validation will be done on the element")
@@ -288,7 +288,7 @@ public class RestMetadataTemplateElement {
 	 * additional validation information allowing specification of the options
 	 * for an element. For example, these can be shown in a drop down list of
 	 * the element must be in-list
-	 * 
+	 *
 	 * @return validationOptions
 	 **/
 	@ApiModelProperty(value = "additional validation information allowing specification of the options for an element.  For example, these can be shown in a drop down list of the element must be in-list")
@@ -314,7 +314,7 @@ public class RestMetadataTemplateElement {
 	 * defines the default value for this element. Ref query dot notation
 	 * appears here, signaling the default will be derived from information held
 	 * elsewhere in the catalog
-	 * 
+	 *
 	 * @return defaultValue
 	 **/
 	@ApiModelProperty(value = "defines the default value for this element. Ref query dot notation appears here, signaling the default will be derived from information held elsewhere in the catalog")
@@ -340,7 +340,7 @@ public class RestMetadataTemplateElement {
 	 * defines the current value of this element in a retrieved and resolved
 	 * instance of the metadata template. That is, after a merge of templates
 	 * and stored metadata values is done
-	 * 
+	 *
 	 * @return currentValue
 	 **/
 	@ApiModelProperty(value = "defines the current value of this element in a retrieved and resolved instance of the metadata template. That is, after a merge of templates and stored metadata values is done")

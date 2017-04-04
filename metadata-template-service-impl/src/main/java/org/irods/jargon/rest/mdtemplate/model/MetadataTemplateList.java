@@ -26,7 +26,7 @@ public class MetadataTemplateList {
 
 	/**
 	 * Metadata Template
-	 * 
+	 *
 	 * @return metadataTemplate
 	 **/
 	@ApiModelProperty(value = "Metadata Template")

@@ -89,8 +89,18 @@ public class SampleTemplateBuilders {
 		coverage.setValidationStyle(ValidationStyleEnum.DEFAULT);
 		elements.add(coverage);
 
+		dc.setElements(elements);
+
 		return dc;
 
+	}
+
+	public IRODSAccessObjectFactory getIrodsAccessObjectFactory() {
+		return irodsAccessObjectFactory;
+	}
+
+	public MetadataTemplateConfiguration getMetadataTemplateConfiguration() {
+		return metadataTemplateConfiguration;
 	}
 
 }

@@ -91,7 +91,7 @@ public class ServerApiService {
 		return securityContextHelper;
 	}
 
-	public void setSecurityContextHelper(SecurityContextHelper securityContextHelper) {
+	public void setSecurityContextHelper(final SecurityContextHelper securityContextHelper) {
 		this.securityContextHelper = securityContextHelper;
 	}
 

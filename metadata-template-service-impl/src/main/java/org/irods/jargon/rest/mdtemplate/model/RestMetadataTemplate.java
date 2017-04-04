@@ -81,7 +81,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * uuid for the tamplate
-	 * 
+	 *
 	 * @return uuid
 	 **/
 	@ApiModelProperty(required = true, value = "uuid for the tamplate")
@@ -100,7 +100,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * display name of the template
-	 * 
+	 *
 	 * @return name
 	 **/
 	@ApiModelProperty(required = true, value = "display name of the template")
@@ -119,7 +119,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * free form description
-	 * 
+	 *
 	 * @return description
 	 **/
 	@ApiModelProperty(value = "free form description")
@@ -138,7 +138,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * author of metadata template
-	 * 
+	 *
 	 * @return author
 	 **/
 	@ApiModelProperty(value = "author of metadata template")
@@ -157,7 +157,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * create date of template
-	 * 
+	 *
 	 * @return created
 	 **/
 	@ApiModelProperty(required = true, value = "create date of template")
@@ -176,7 +176,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * modification date of template
-	 * 
+	 *
 	 * @return modified
 	 **/
 	@ApiModelProperty(required = true, value = "modification date of template")
@@ -195,7 +195,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * optional version number
-	 * 
+	 *
 	 * @return version
 	 **/
 	@ApiModelProperty(value = "optional version number")
@@ -219,7 +219,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * functional type of metadata template (e.g. form versus automatic)
-	 * 
+	 *
 	 * @return type
 	 **/
 	@ApiModelProperty(required = true, value = "functional type of metadata template (e.g. form versus automatic)")
@@ -243,7 +243,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * disposition of metadata created by template
-	 * 
+	 *
 	 * @return destination
 	 **/
 	@ApiModelProperty(required = true, value = "disposition of metadata created by template")
@@ -262,7 +262,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * indicates whether entry of this metadata is required
-	 * 
+	 *
 	 * @return required
 	 **/
 	@ApiModelProperty(required = true, value = "indicates whether entry of this metadata is required")
@@ -288,7 +288,7 @@ public class RestMetadataTemplate {
 
 	/**
 	 * Metadata Template Elements
-	 * 
+	 *
 	 * @return metadataTemplateElements
 	 **/
 	@ApiModelProperty(required = true, value = "Metadata Template Elements")

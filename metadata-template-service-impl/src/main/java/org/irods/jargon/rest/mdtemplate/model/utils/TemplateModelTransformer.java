@@ -55,7 +55,7 @@ public class TemplateModelTransformer {
 
 	/**
 	 * Build a rest-layer representation of the metadata template
-	 * 
+	 *
 	 * @param metadataTemplate
 	 *            base layer {@link MetadataTemplate}
 	 * @return
@@ -84,7 +84,7 @@ public class TemplateModelTransformer {
 
 	}
 
-	public static RestMetadataTemplateElement restMetadataElementFromBaseElement(MetadataElement element)
+	public static RestMetadataTemplateElement restMetadataElementFromBaseElement(final MetadataElement element)
 			throws InvalidDataException {
 
 		RestMetadataTemplateElement restElement = new RestMetadataTemplateElement();
@@ -108,7 +108,7 @@ public class TemplateModelTransformer {
 	/**
 	 * Get the rest layer {@link ValidationStyleEnum} translated from the data
 	 * layer
-	 * 
+	 *
 	 * @param validationStyle
 	 *            {@link org.irods.jargon.metadatatemplate.ValidationStyleEnum}
 	 *            from the data layer
@@ -116,7 +116,7 @@ public class TemplateModelTransformer {
 	 * @throws InvalidDataException
 	 */
 	public static ValidationStyleEnum restValidationStyleEnumFromBaseValidationStyleEnum(
-			org.irods.jargon.metadatatemplate.ValidationStyleEnum validationStyle) throws InvalidDataException {
+			final org.irods.jargon.metadatatemplate.ValidationStyleEnum validationStyle) throws InvalidDataException {
 
 		if (validationStyle == null) {
 			throw new IllegalArgumentException("null validationStyle");
@@ -201,7 +201,7 @@ public class TemplateModelTransformer {
 	/**
 	 * Translate the element type from the underlying library layer to the rest
 	 * layer enumberation
-	 * 
+	 *
 	 * @param elementTypeEnum
 	 *            {@link org.irods.jargon.metadatatemplate.ElementTypeEnum}
 	 *            representing the element type in the data layer
