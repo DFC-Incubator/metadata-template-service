@@ -9,9 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
-//@ContextConfiguration("classpath:/test-rest-servlet.xml")
 @WebAppConfiguration
-// @RunWith(SpringJUnit4ClassRunner.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebSecurityConfigTest {
