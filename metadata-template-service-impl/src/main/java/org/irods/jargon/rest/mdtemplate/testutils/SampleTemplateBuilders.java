@@ -16,7 +16,7 @@ import org.irods.jargon.metadatatemplate.MetadataTemplate;
 import org.irods.jargon.metadatatemplate.SourceEnum;
 import org.irods.jargon.metadatatemplate.TemplateTypeEnum;
 import org.irods.jargon.metadatatemplate.ValidationStyleEnum;
-import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateConfiguration;
+import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateRestConfiguration;
 
 /**
  * Builders for metadataTemplates for default 'dot irods file' implementation
@@ -26,7 +26,7 @@ import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateConfiguration;
  */
 public class SampleTemplateBuilders {
 
-	private final MetadataTemplateConfiguration metadataTemplateConfiguration;
+	private final MetadataTemplateRestConfiguration metadataTemplateConfiguration;
 	private final IRODSAccessObjectFactory irodsAccessObjectFactory;
 
 	/**
@@ -34,7 +34,7 @@ public class SampleTemplateBuilders {
 	 *
 	 * @param metadataTemplateConfiguration
 	 */
-	public SampleTemplateBuilders(final MetadataTemplateConfiguration metadataTemplateConfiguration,
+	public SampleTemplateBuilders(final MetadataTemplateRestConfiguration metadataTemplateConfiguration,
 			final IRODSAccessObjectFactory irodsAccessObjectFactory) {
 		super();
 		this.metadataTemplateConfiguration = metadataTemplateConfiguration;
@@ -89,6 +89,19 @@ public class SampleTemplateBuilders {
 		coverage.setValidationStyle(ValidationStyleEnum.DEFAULT);
 		elements.add(coverage);
 
+		MetadataElement creator = new MetadataElement();
+		creator.setDescription("An entity primarily responsible for making the resource.");
+		creator.setElementName("http://purl.org/dc/elements/1.1/contributor");
+		creator.setI18nDescription("dc.contributor.description");
+		creator.setI18nName("dc.contributor");
+		creator.setRequired(true);
+		creator.setSource(SourceEnum.USER);
+		creator.setTemplateUuid(UUID.randomUUID());
+		creator.setType(ElementTypeEnum.RAW_STRING);
+		creator.setValidationStyle(ValidationStyleEnum.DEFAULT);
+
+		elements.add(creator);
+
 		dc.setElements(elements);
 
 		return dc;
@@ -99,7 +112,7 @@ public class SampleTemplateBuilders {
 		return irodsAccessObjectFactory;
 	}
 
-	public MetadataTemplateConfiguration getMetadataTemplateConfiguration() {
+	public MetadataTemplateRestConfiguration getMetadataTemplateConfiguration() {
 		return metadataTemplateConfiguration;
 	}
 

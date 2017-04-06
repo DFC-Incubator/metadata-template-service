@@ -9,7 +9,7 @@ import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.JargonMetadataResolver;
 import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
-import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateConfiguration;
+import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateRestConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 	private IRODSAccessObjectFactory irodsAccessObjectFactory;
 
 	@Autowired
-	private MetadataTemplateConfiguration metadataTemplateConfiguration;
+	private MetadataTemplateRestConfiguration metadataTemplateConfiguration;
 
 	/*
 	 * (non-Javadoc)
@@ -72,11 +72,11 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
 	}
 
-	public MetadataTemplateConfiguration getMetadataTemplateConfiguration() {
+	public MetadataTemplateRestConfiguration getMetadataTemplateConfiguration() {
 		return metadataTemplateConfiguration;
 	}
 
-	public void setMetadataTemplateConfiguration(final MetadataTemplateConfiguration metadataTemplateConfiguration) {
+	public void setMetadataTemplateConfiguration(final MetadataTemplateRestConfiguration metadataTemplateConfiguration) {
 		this.metadataTemplateConfiguration = metadataTemplateConfiguration;
 	}
 

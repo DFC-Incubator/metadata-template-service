@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource("file:///etc/irods-ext/mdtemplate.properties")
-public class MetadataTemplateConfiguration {
+public class MetadataTemplateRestConfiguration {
 
 	private String publicTemplateRepositoryLocation = "";
 
