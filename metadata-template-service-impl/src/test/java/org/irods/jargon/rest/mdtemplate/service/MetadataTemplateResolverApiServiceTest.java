@@ -2,12 +2,16 @@ package org.irods.jargon.rest.mdtemplate.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.irods.jargon.core.connection.IRODSAccount;
 import org.irods.jargon.core.connection.auth.AuthResponse;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.MetadataTemplate;
+import org.irods.jargon.metadatatemplate.MetadataTemplateContext;
+import org.irods.jargon.metadatatemplate.MetadataTemplateLocationTypeEnum;
+import org.irods.jargon.metadatatemplate.MetadataTemplateServiceFactory;
 import org.irods.jargon.rest.mdtemplate.model.MetadataTemplateList;
 import org.irods.jargon.rest.mdtemplate.testutils.SampleTemplateBuilders;
 import org.irods.jargon.rest.security.IrodsAuthentication;
@@ -22,7 +26,7 @@ public class MetadataTemplateResolverApiServiceTest {
 	@Test
 	public void testListPublicTemplates() throws Exception {
 		IRODSAccessObjectFactory iaf = Mockito.mock(IRODSAccessObjectFactory.class);
-		MetadataTemplateServiceFactory<TemplateSourceContext> templateServiceFactory = Mockito
+		MetadataTemplateServiceFactory<MetadataTemplateContext> templateServiceFactory = Mockito
 				.mock(MetadataTemplateServiceFactory.class);
 		IRODSAccount dummyAccount = new IRODSAccount("boo", 0, "boo", "boo", "boo", "boo", "boo");
 		AuthResponse authResponse = new AuthResponse();
@@ -30,7 +34,7 @@ public class MetadataTemplateResolverApiServiceTest {
 		SecurityContextHelper securityContextHelper = Mockito.mock(SecurityContextHelper.class);
 		Mockito.when(securityContextHelper.obtainIrodsAuthenticationFromContext()).thenReturn(irodsAuthentication);
 
-		AbstractMetadataResolver resolver = Mockito.mock(AbstractMetadataResolver.class);
+		AbstractMetadataResolver<MetadataTemplateContext> resolver = Mockito.mock(AbstractMetadataResolver.class);
 		List<MetadataTemplate> metadataTemplates = new ArrayList<MetadataTemplate>();
 		metadataTemplates.add(SampleTemplateBuilders.buildDublinCoreMetadataTemplate());
 		Mockito.when(resolver.listPublicTemplates()).thenReturn(metadataTemplates);
@@ -43,6 +47,33 @@ public class MetadataTemplateResolverApiServiceTest {
 
 		MetadataTemplateList actual = service.listPublicTemplates();
 		Assert.assertNotNull("no list returned", actual);
+
+	}
+
+	@Test
+	public void testAddPublicTemplate() throws Exception {
+		IRODSAccessObjectFactory iaf = Mockito.mock(IRODSAccessObjectFactory.class);
+		MetadataTemplateServiceFactory<MetadataTemplateContext> templateServiceFactory = Mockito
+				.mock(MetadataTemplateServiceFactory.class);
+		IRODSAccount dummyAccount = new IRODSAccount("boo", 0, "boo", "boo", "boo", "boo", "boo");
+		AuthResponse authResponse = new AuthResponse();
+		IrodsAuthentication irodsAuthentication = new IrodsAuthentication(dummyAccount, authResponse);
+		SecurityContextHelper securityContextHelper = Mockito.mock(SecurityContextHelper.class);
+		Mockito.when(securityContextHelper.obtainIrodsAuthenticationFromContext()).thenReturn(irodsAuthentication);
+
+		AbstractMetadataResolver resolver = Mockito.mock(AbstractMetadataResolver.class);
+		MetadataTemplate metadataTemplate = SampleTemplateBuilders.buildDublinCoreMetadataTemplate();
+		Mockito.when(resolver.saveTemplate(metadataTemplate, MetadataTemplateLocationTypeEnum.PUBLIC))
+				.thenReturn(UUID.randomUUID());
+
+		Mockito.when(templateServiceFactory.instanceMetadataResolver(dummyAccount, null)).thenReturn(resolver);
+
+		MetadataTemplateResolverApiService service = new MetadataTemplateResolverApiService();
+		service.setSecurityContextHelper(securityContextHelper);
+		service.setIrodsAccessObjectFactory(iaf);
+		service.setMetadataTemplateServiceFactory(templateServiceFactory);
+
+		// UUID actual = service.a
 
 	}
 

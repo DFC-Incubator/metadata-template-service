@@ -4,11 +4,13 @@
 package org.irods.jargon.rest.mdtemplate.service;
 
 import org.irods.jargon.core.connection.IRODSAccount;
-import org.irods.jargon.core.exception.JargonException;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.JargonMetadataResolver;
+import org.irods.jargon.metadatatemplate.MetadataTemplateConfiguration;
+import org.irods.jargon.metadatatemplate.MetadataTemplateContext;
 import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
+import org.irods.jargon.metadatatemplate.MetadataTemplateServiceFactory;
 import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateRestConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +28,8 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSourceContext>
-		implements MetadataTemplateServiceFactory<T> {
+public class MetadataTemplateServiceFactoryViaDotIrodsImpl
+		implements MetadataTemplateServiceFactory<MetadataTemplateContext> {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -35,7 +37,7 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 	private IRODSAccessObjectFactory irodsAccessObjectFactory;
 
 	@Autowired
-	private MetadataTemplateRestConfiguration metadataTemplateConfiguration;
+	private MetadataTemplateRestConfiguration metadataTemplateRestConfiguration;
 
 	/*
 	 * (non-Javadoc)
@@ -46,21 +48,21 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 	 * T)
 	 */
 	@Override
-	public AbstractMetadataResolver instanceMetadataResolver(final IRODSAccount irodsAccount,
-			final T templateSourceContext) throws MetadataTemplateProcessingException {
+	public AbstractMetadataResolver<MetadataTemplateContext> instanceMetadataResolver(final IRODSAccount irodsAccount,
+			final MetadataTemplateContext templateSourceContext) throws MetadataTemplateProcessingException {
 		log.info("instanceMetadataResolver()");
 		if (irodsAccount == null) {
 			throw new IllegalArgumentException("null irodsAccount");
 		}
 
+		MetadataTemplateConfiguration metadataTemplateConfiguration = new MetadataTemplateConfiguration();
+		metadataTemplateConfiguration
+				.setPublicTemplateIdentifier(metadataTemplateRestConfiguration.getPublicTemplateRepositoryLocation());
+
 		// template source context unused for iRODS
 
-		try {
-			return new JargonMetadataResolver(irodsAccount, irodsAccessObjectFactory);
-		} catch (JargonException e) {
-			log.error("exception processing metadata template resolver", e);
-			throw new MetadataTemplateProcessingException("error creating resolver", e);
-		}
+		return new JargonMetadataResolver(templateSourceContext, irodsAccessObjectFactory,
+				metadataTemplateConfiguration);
 
 	}
 
@@ -72,12 +74,13 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl<T extends TemplateSou
 		this.irodsAccessObjectFactory = irodsAccessObjectFactory;
 	}
 
-	public MetadataTemplateRestConfiguration getMetadataTemplateConfiguration() {
-		return metadataTemplateConfiguration;
+	public MetadataTemplateRestConfiguration getMetadataTemplateRestConfiguration() {
+		return metadataTemplateRestConfiguration;
 	}
 
-	public void setMetadataTemplateConfiguration(final MetadataTemplateRestConfiguration metadataTemplateConfiguration) {
-		this.metadataTemplateConfiguration = metadataTemplateConfiguration;
+	public void setMetadataTemplateRestConfiguration(
+			final MetadataTemplateRestConfiguration metadataTemplateRestConfiguration) {
+		this.metadataTemplateRestConfiguration = metadataTemplateRestConfiguration;
 	}
 
 }

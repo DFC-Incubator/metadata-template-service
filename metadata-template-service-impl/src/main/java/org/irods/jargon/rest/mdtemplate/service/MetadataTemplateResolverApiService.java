@@ -5,7 +5,9 @@ package org.irods.jargon.rest.mdtemplate.service;
 
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
+import org.irods.jargon.metadatatemplate.MetadataTemplateContext;
 import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
+import org.irods.jargon.metadatatemplate.MetadataTemplateServiceFactory;
 import org.irods.jargon.rest.mdtemplate.exception.MetadataTemplateException;
 import org.irods.jargon.rest.mdtemplate.model.MetadataTemplateList;
 import org.irods.jargon.rest.mdtemplate.model.utils.TemplateModelTransformer;
@@ -35,7 +37,7 @@ public class MetadataTemplateResolverApiService {
 	 * Factory service to create appropriate metadata template services
 	 */
 	@Autowired
-	private MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory;
+	private MetadataTemplateServiceFactory<MetadataTemplateContext> metadataTemplateServiceFactory;
 
 	/**
 	 * Hook for obtaining security context info
@@ -47,18 +49,18 @@ public class MetadataTemplateResolverApiService {
 			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("listPublicTemplates()");
 		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
-		AbstractMetadataResolver resolver = metadataTemplateServiceFactory
+		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
 				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
 		return TemplateModelTransformer.restMetadataTemplateListFromBaseModel(resolver.listPublicTemplates());
 
 	}
 
-	public MetadataTemplateServiceFactory<TemplateSourceContext> getMetadataTemplateServiceFactory() {
+	public MetadataTemplateServiceFactory<MetadataTemplateContext> getMetadataTemplateServiceFactory() {
 		return metadataTemplateServiceFactory;
 	}
 
 	public void setMetadataTemplateServiceFactory(
-			final MetadataTemplateServiceFactory<TemplateSourceContext> metadataTemplateServiceFactory) {
+			final MetadataTemplateServiceFactory<MetadataTemplateContext> metadataTemplateServiceFactory) {
 		this.metadataTemplateServiceFactory = metadataTemplateServiceFactory;
 	}
 
