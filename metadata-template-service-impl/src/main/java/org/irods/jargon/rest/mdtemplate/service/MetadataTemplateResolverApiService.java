@@ -3,6 +3,8 @@
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
+import java.util.UUID;
+
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.MetadataTemplateContext;
@@ -10,6 +12,7 @@ import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
 import org.irods.jargon.metadatatemplate.MetadataTemplateServiceFactory;
 import org.irods.jargon.rest.mdtemplate.exception.MetadataTemplateException;
 import org.irods.jargon.rest.mdtemplate.model.MetadataTemplateList;
+import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate;
 import org.irods.jargon.rest.mdtemplate.model.utils.TemplateModelTransformer;
 import org.irods.jargon.rest.security.IrodsAuthentication;
 import org.irods.jargon.rest.security.SecurityContextHelper;
@@ -52,6 +55,16 @@ public class MetadataTemplateResolverApiService {
 		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
 				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
 		return TemplateModelTransformer.restMetadataTemplateListFromBaseModel(resolver.listPublicTemplates());
+
+	}
+
+	public UUID savePublicTemplate(RestMetadataTemplate restMetadataTemplate) throws MetadataTemplateException, MetadataTemplateProcessingException {
+		log.info("savePublicTemplate()");
+		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
+		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
+				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
+		return resolver.saveTemplate(TemplateModelTransformer., metadataTemplateLocationTypeEnum)
+		
 
 	}
 

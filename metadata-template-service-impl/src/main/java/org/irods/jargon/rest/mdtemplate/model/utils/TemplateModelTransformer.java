@@ -5,6 +5,7 @@ package org.irods.jargon.rest.mdtemplate.model.utils;
 
 import java.util.List;
 
+import org.irods.jargon.metadatatemplate.DestinationEnum;
 import org.irods.jargon.metadatatemplate.MetadataElement;
 import org.irods.jargon.metadatatemplate.MetadataTemplate;
 import org.irods.jargon.rest.mdtemplate.exception.InvalidDataException;
@@ -51,6 +52,42 @@ public class TemplateModelTransformer {
 
 		return metadataTemplateList;
 
+	}
+
+	/**
+	 * 
+	 * @param restMetadataTemplate
+	 * @return
+	 * @throws InvalidDataException
+	 */
+	public static MetadataTemplate baseMetadataTemplateFromRestModel(final RestMetadataTemplate restMetadataTemplate)
+			throws InvalidDataException {
+
+		MetadataTemplate metadataTemplate = new MetadataTemplate();
+		metadataTemplate.setAuthor(restMetadataTemplate.getAuthor());
+		metadataTemplate.setCreated(restMetadataTemplate.getCreated().toDate());
+		metadataTemplate.setDescription(restMetadataTemplate.getDescription());
+		metadataTemplate.setExporter(baseDestinationEnumFromRestDestinationEnum(metadataTemplate.getExporter()));
+
+	}
+
+	/**
+	 * Convert from the rest layer destination to the base layer destination
+	 * 
+	 * @param exporter
+	 * @return
+	 */
+	private static org.irods.jargon.metadatatemplate.DestinationEnum baseDestinationEnumFromRestDestinationEnum(
+			DestinationEnum exporter) {
+		if (exporter == null) {
+			throw new IllegalArgumentException("null exporter");
+		}
+
+		if (exporter == DestinationEnum.IRODS) {
+			return org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.DestinationEnum.IRODS;
+		} else {
+			throw new InvalidDataException("unknown destination enum:" + destinationEnum);
+		}
 	}
 
 	/**
