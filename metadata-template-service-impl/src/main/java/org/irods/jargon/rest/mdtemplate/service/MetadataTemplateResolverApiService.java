@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.MetadataTemplateContext;
+import org.irods.jargon.metadatatemplate.MetadataTemplateLocationTypeEnum;
 import org.irods.jargon.metadatatemplate.MetadataTemplateProcessingException;
 import org.irods.jargon.metadatatemplate.MetadataTemplateServiceFactory;
 import org.irods.jargon.rest.mdtemplate.exception.MetadataTemplateException;
@@ -19,6 +20,7 @@ import org.irods.jargon.rest.security.SecurityContextHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Service facade for metadata template resolver
@@ -26,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author mconway
  *
  */
+@Component
 public class MetadataTemplateResolverApiService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -58,13 +61,14 @@ public class MetadataTemplateResolverApiService {
 
 	}
 
-	public UUID savePublicTemplate(RestMetadataTemplate restMetadataTemplate) throws MetadataTemplateException, MetadataTemplateProcessingException {
+	public UUID savePublicTemplate(RestMetadataTemplate restMetadataTemplate)
+			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("savePublicTemplate()");
 		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
 		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
 				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
-		return resolver.saveTemplate(TemplateModelTransformer., metadataTemplateLocationTypeEnum)
-		
+		return resolver.saveTemplate(TemplateModelTransformer.baseMetadataTemplateFromRestModel(restMetadataTemplate),
+				MetadataTemplateLocationTypeEnum.PUBLIC);
 
 	}
 

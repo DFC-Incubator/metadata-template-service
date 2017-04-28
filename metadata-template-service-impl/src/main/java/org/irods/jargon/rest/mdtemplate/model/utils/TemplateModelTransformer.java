@@ -3,14 +3,18 @@
  */
 package org.irods.jargon.rest.mdtemplate.model.utils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.irods.jargon.metadatatemplate.DestinationEnum;
 import org.irods.jargon.metadatatemplate.MetadataElement;
 import org.irods.jargon.metadatatemplate.MetadataTemplate;
+import org.irods.jargon.metadatatemplate.SourceEnum;
 import org.irods.jargon.rest.mdtemplate.exception.InvalidDataException;
 import org.irods.jargon.rest.mdtemplate.model.MetadataTemplateList;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate;
+import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.TypeEnum;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement.ElementTypeEnum;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement.ValidationStyleEnum;
@@ -68,6 +72,187 @@ public class TemplateModelTransformer {
 		metadataTemplate.setCreated(restMetadataTemplate.getCreated().toDate());
 		metadataTemplate.setDescription(restMetadataTemplate.getDescription());
 		metadataTemplate.setExporter(baseDestinationEnumFromRestDestinationEnum(metadataTemplate.getExporter()));
+		metadataTemplate.setModified(restMetadataTemplate.getModified().toDate());
+		metadataTemplate.setName(restMetadataTemplate.getName());
+		metadataTemplate.setRequired(restMetadataTemplate.getRequired());
+		metadataTemplate.setSource(baseSourceEnumFromRestSourceEnum(restMetadataTemplate.getType()));
+		metadataTemplate.setUuid(UUID.fromString(restMetadataTemplate.getUuid()));
+		metadataTemplate.setVersion(restMetadataTemplate.getVersion());
+		metadataTemplate.setElements(baseElementsFromRestElements(restMetadataTemplate));
+		return metadataTemplate;
+
+	}
+
+	private static List<MetadataElement> baseElementsFromRestElements(RestMetadataTemplate restMetadataTemplate)
+			throws InvalidDataException {
+		if (restMetadataTemplate == null) {
+			throw new IllegalArgumentException("null restMetadataTemplate");
+		}
+
+		MetadataElement element;
+		List<MetadataElement> elements = new ArrayList<MetadataElement>();
+		for (RestMetadataTemplateElement restElement : restMetadataTemplate.getMetadataTemplateElements()) {
+			element = new MetadataElement();
+			element.setCurrentValue(restElement.getCurrentValue());
+			element.setDefaultValue(restElement.getDefaultValue());
+			element.setDescription(restElement.getDescription());
+			element.setElementName(restElement.getName());
+			element.setI18nDescription(restElement.getI18nDescription());
+			element.setI18nName(restElement.getI18nName());
+			element.setRequired(restElement.getRequired());
+			element.setTemplateUuid(UUID.fromString(restElement.getUuid()));
+			element.setType(baseElementTypeFromRestElementType(restElement.getElementType()));
+			element.setValidationOptions(restElement.getValidationOptions());
+			element.setValidationStyle(
+					baseValidationStyleEnumFromRestValidationStyle(restElement.getValidationStyle()));
+			elements.add(element);
+		}
+
+		return elements;
+
+	}
+
+	private static org.irods.jargon.metadatatemplate.ValidationStyleEnum baseValidationStyleEnumFromRestValidationStyle(
+			List<ValidationStyleEnum> validationStyle) throws InvalidDataException {
+
+		if (validationStyle == null || validationStyle.isEmpty()) {
+			throw new IllegalArgumentException("null or empty validationStyle");
+		}
+
+		org.irods.jargon.metadatatemplate.ValidationStyleEnum returnValidationStyle;
+
+		ValidationStyleEnum restStyle = validationStyle.get(0);
+		org.irods.jargon.metadatatemplate.ValidationStyleEnum returnStyle;
+
+		switch (restStyle) {
+		case DEFAULT:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.DEFAULT;
+			break;
+		case IS:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.IS;
+			break;
+		case IN_LIST:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.IN_LIST;
+			break;
+		case IN_RANGE:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.IN_RANGE;
+			break;
+		case IN_RANGE_EXCLUSIVE:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.IN_RANGE_EXCLUSIVE;
+			break;
+		case REGEX:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.REGEX;
+			break;
+		case FOLLOW_REF:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.FOLLOW_REF;
+			break;
+		case DO_NOT_VALIDATE:
+			returnStyle = org.irods.jargon.metadatatemplate.ValidationStyleEnum.DO_NOT_VALIDATE;
+			break;
+		default:
+			throw new InvalidDataException("unknown rest validationStyle:" + restStyle);
+		}
+
+		return returnStyle;
+
+	}
+
+	private static org.irods.jargon.metadatatemplate.ElementTypeEnum baseElementTypeFromRestElementType(
+			List<ElementTypeEnum> elementType) throws InvalidDataException {
+
+		if (elementType == null || elementType.isEmpty()) {
+			throw new IllegalArgumentException("elementType is null or empty");
+		}
+
+		ElementTypeEnum restElementType = elementType.get(0);
+		org.irods.jargon.metadatatemplate.ElementTypeEnum returnTypeEnum;
+
+		switch (restElementType) {
+		case RAW_STRING:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_STRING;
+			break;
+		case RAW_TEXT:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_TEXT;
+			break;
+		case RAW_URL:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_URL;
+			break;
+		case RAW_INT:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_INT;
+			break;
+		case RAW_FLOAT:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_FLOAT;
+			break;
+		case RAW_BOOLEAN:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_BOOLEAN;
+			break;
+		case RAW_DATE:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_DATE;
+			break;
+		case RAW_TIME:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_TIME;
+			break;
+		case RAW_DATETIME:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.RAW_DATETIME;
+			break;
+		case REF_IRODS_QUERY:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.REF_IRODS_QUERY;
+			break;
+		case REF_IRODS_CATALOG:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.REF_IRODS_CATALOG;
+			break;
+		case REF_URL:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.REF_URL;
+			break;
+		case LIST_STRING:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.LIST_STRING;
+			break;
+		case LIST_INT:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.LIST_INT;
+			break;
+		case LIST_FLOAT:
+			returnTypeEnum = org.irods.jargon.metadatatemplate.ElementTypeEnum.LIST_FLOAT;
+			break;
+		default:
+			throw new InvalidDataException("unknown metadataElementType:" + restElementType);
+
+		}
+
+		return returnTypeEnum;
+
+	}
+
+	/**
+	 * Get the source enum value for the base metadata template domain model
+	 * from the REST model
+	 * 
+	 * @param type
+	 * @return
+	 * @throws InvalidDataException
+	 */
+	private static SourceEnum baseSourceEnumFromRestSourceEnum(List<TypeEnum> type) throws InvalidDataException {
+
+		if (type == null) {
+			throw new IllegalArgumentException("null type");
+		}
+
+		if (type.isEmpty()) {
+			throw new InvalidDataException("no type information");
+		}
+
+		SourceEnum sourceEnum;
+
+		switch (type.get(0)) {
+		case FORM_BASED:
+			sourceEnum = SourceEnum.USER;
+			break;
+		case GENERATED:
+			sourceEnum = SourceEnum.DRIVER;
+			break;
+		default:
+			throw new InvalidDataException("unknown type");
+		}
+		return sourceEnum;
 
 	}
 
@@ -76,17 +261,18 @@ public class TemplateModelTransformer {
 	 * 
 	 * @param exporter
 	 * @return
+	 * @throws InvalidDataException
 	 */
 	private static org.irods.jargon.metadatatemplate.DestinationEnum baseDestinationEnumFromRestDestinationEnum(
-			DestinationEnum exporter) {
+			DestinationEnum exporter) throws InvalidDataException {
 		if (exporter == null) {
 			throw new IllegalArgumentException("null exporter");
 		}
 
 		if (exporter == DestinationEnum.IRODS) {
-			return org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.DestinationEnum.IRODS;
+			return DestinationEnum.IRODS;
 		} else {
-			throw new InvalidDataException("unknown destination enum:" + destinationEnum);
+			throw new InvalidDataException("unknown destination enum:" + exporter);
 		}
 	}
 
@@ -109,7 +295,7 @@ public class TemplateModelTransformer {
 		restTemplate.setModified(new DateTime(metadataTemplate.getModified()));
 		restTemplate.setName(metadataTemplate.getName());
 		restTemplate.setRequired(metadataTemplate.isRequired());
-		restTemplate.addTypeItem(restTypeEnumFromBaseTypeEnum(metadataTemplate.getType()));
+		restTemplate.addTypeItem(restTypeEnumFromBaseSourceEnum(metadataTemplate.getSource()));
 		restTemplate.setUuid(metadataTemplate.getUuid().toString());
 		restTemplate.setVersion(metadataTemplate.getVersion());
 
@@ -118,6 +304,29 @@ public class TemplateModelTransformer {
 			restTemplate.addMetadataTemplateElementsItem(restMetadataElementFromBaseElement(element));
 		}
 		return restTemplate;
+
+	}
+
+	private static TypeEnum restTypeEnumFromBaseSourceEnum(SourceEnum source) throws InvalidDataException {
+		if (source == null) {
+			throw new IllegalArgumentException("null source");
+		}
+
+		TypeEnum typeEnum;
+
+		switch (source) {
+		case USER:
+			typeEnum = TypeEnum.FORM_BASED;
+			break;
+		case DRIVER:
+			typeEnum = TypeEnum.GENERATED;
+			break;
+		default:
+			throw new InvalidDataException("unknown source:" + source);
+
+		}
+
+		return typeEnum;
 
 	}
 
@@ -211,27 +420,6 @@ public class TemplateModelTransformer {
 			return org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.DestinationEnum.IRODS;
 		} else {
 			throw new InvalidDataException("unknown destination enum:" + destinationEnum);
-		}
-	}
-
-	/**
-	 * Translate the base template type to the rest layer template type
-	 *
-	 * @param typeEnum
-	 *            templateType from the base impl
-	 * @return template type from the rest layer
-	 * @throws InvalidDataException
-	 */
-	public static org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.TypeEnum restTypeEnumFromBaseTypeEnum(
-			final org.irods.jargon.metadatatemplate.TemplateTypeEnum typeEnum) throws InvalidDataException {
-		if (typeEnum == null) {
-			throw new IllegalArgumentException("null typeEnum");
-		}
-
-		if (typeEnum == org.irods.jargon.metadatatemplate.TemplateTypeEnum.FORM_BASED) {
-			return org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.TypeEnum.FORM_BASED;
-		} else {
-			throw new InvalidDataException("unknown type enum:" + typeEnum);
 		}
 	}
 

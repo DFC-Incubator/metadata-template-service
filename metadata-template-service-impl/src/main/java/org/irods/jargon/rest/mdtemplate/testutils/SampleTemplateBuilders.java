@@ -14,7 +14,6 @@ import org.irods.jargon.metadatatemplate.ElementTypeEnum;
 import org.irods.jargon.metadatatemplate.MetadataElement;
 import org.irods.jargon.metadatatemplate.MetadataTemplate;
 import org.irods.jargon.metadatatemplate.SourceEnum;
-import org.irods.jargon.metadatatemplate.TemplateTypeEnum;
 import org.irods.jargon.metadatatemplate.ValidationStyleEnum;
 import org.irods.jargon.rest.mdtemplate.config.MetadataTemplateRestConfiguration;
 
@@ -57,7 +56,6 @@ public class SampleTemplateBuilders {
 		dc.setName("Dublin Core");
 		dc.setRequired(false);
 		dc.setSource(SourceEnum.USER);
-		dc.setType(TemplateTypeEnum.FORM_BASED);
 		dc.setUuid(UUID.randomUUID());
 		dc.setVersion("1.1");
 
@@ -69,7 +67,6 @@ public class SampleTemplateBuilders {
 		contributor.setI18nDescription("dc.contributor.description");
 		contributor.setI18nName("dc.contributor");
 		contributor.setRequired(true);
-		contributor.setSource(SourceEnum.USER);
 		contributor.setTemplateUuid(UUID.randomUUID());
 		contributor.setType(ElementTypeEnum.RAW_STRING);
 		contributor.setValidationStyle(ValidationStyleEnum.DEFAULT);
@@ -83,7 +80,6 @@ public class SampleTemplateBuilders {
 		coverage.setI18nDescription("dc.coverage.description");
 		coverage.setI18nName("dc.coverage");
 		coverage.setRequired(false);
-		coverage.setSource(SourceEnum.USER);
 		coverage.setTemplateUuid(UUID.randomUUID());
 		coverage.setType(ElementTypeEnum.REF_URL);
 		coverage.setValidationStyle(ValidationStyleEnum.DEFAULT);
@@ -95,7 +91,6 @@ public class SampleTemplateBuilders {
 		creator.setI18nDescription("dc.contributor.description");
 		creator.setI18nName("dc.contributor");
 		creator.setRequired(true);
-		creator.setSource(SourceEnum.USER);
 		creator.setTemplateUuid(UUID.randomUUID());
 		creator.setType(ElementTypeEnum.RAW_STRING);
 		creator.setValidationStyle(ValidationStyleEnum.DEFAULT);
