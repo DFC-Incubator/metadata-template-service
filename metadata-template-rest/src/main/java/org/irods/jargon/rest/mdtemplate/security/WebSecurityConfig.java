@@ -104,6 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.httpBasic().realmName(RestConstants.DFC_REALM).authenticationEntryPoint(irodsBasicAuthEntryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(connectionCloseFilter, SecurityContextPersistenceFilter.class);
+		http.csrf().disable();
 	}
 
 	/**

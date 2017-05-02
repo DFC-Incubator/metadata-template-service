@@ -39,6 +39,6 @@ public interface TemplatesApi {
 
 			@ApiParam(value = "Metadata template to be added", required = true) @RequestBody RestMetadataTemplate body
 
-	);
+	) throws MetadataTemplateException, MetadataTemplateProcessingException;
 
 }

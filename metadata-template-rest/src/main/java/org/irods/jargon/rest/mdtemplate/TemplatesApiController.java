@@ -38,13 +38,16 @@ public class TemplatesApiController implements TemplatesApi {
 		return response;
 	}
 
+	@Override
 	public ResponseEntity<Void> addPublicTemplate(
 
 			@ApiParam(value = "Metadata template to be added", required = true) @RequestBody RestMetadataTemplate body
 
-	) {
-		// do some magic!
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	) throws MetadataTemplateException, MetadataTemplateProcessingException {
+
+		metadataTemplateResolverApiService.savePublicTemplate(body);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+
 	}
 
 	public MetadataTemplateResolverApiService getMetadataTemplateResolverApiService() {

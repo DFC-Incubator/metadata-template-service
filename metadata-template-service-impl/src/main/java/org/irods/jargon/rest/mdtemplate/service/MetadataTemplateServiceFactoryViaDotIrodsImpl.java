@@ -3,7 +3,6 @@
  */
 package org.irods.jargon.rest.mdtemplate.service;
 
-import org.irods.jargon.core.connection.IRODSAccount;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.metadatatemplate.AbstractMetadataResolver;
 import org.irods.jargon.metadatatemplate.JargonMetadataResolver;
@@ -39,20 +38,17 @@ public class MetadataTemplateServiceFactoryViaDotIrodsImpl
 	@Autowired
 	private MetadataTemplateRestConfiguration metadataTemplateRestConfiguration;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.irods.jargon.rest.mdtemplate.service.MetadataTemplateServiceFactory#
-	 * instanceMetadataResolver(org.irods.jargon.core.connection.IRODSAccount,
-	 * T)
-	 */
 	@Override
-	public AbstractMetadataResolver<MetadataTemplateContext> instanceMetadataResolver(final IRODSAccount irodsAccount,
+	public AbstractMetadataResolver<MetadataTemplateContext> instanceMetadataResolver(
 			final MetadataTemplateContext templateSourceContext) throws MetadataTemplateProcessingException {
 		log.info("instanceMetadataResolver()");
-		if (irodsAccount == null) {
-			throw new IllegalArgumentException("null irodsAccount");
+
+		if (templateSourceContext == null) {
+			throw new IllegalArgumentException("null templateSourceContext");
+		}
+
+		if (templateSourceContext.getIrodsAccount() == null) {
+			throw new IllegalStateException("templateSourceContext should contain an irodsAccount");
 		}
 
 		MetadataTemplateConfiguration metadataTemplateConfiguration = new MetadataTemplateConfiguration();

@@ -3,7 +3,9 @@
  */
 package org.irods.jargon.rest.mdtemplate.model.utils;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +20,6 @@ import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplate.TypeEnum;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement.ElementTypeEnum;
 import org.irods.jargon.rest.mdtemplate.model.RestMetadataTemplateElement.ValidationStyleEnum;
-import org.joda.time.DateTime;
 
 /**
  * Transformation utilities between mdtemplates domain model and
@@ -29,6 +30,8 @@ import org.joda.time.DateTime;
  *
  */
 public class TemplateModelTransformer {
+
+	private static DateFormat dateFormat = DateFormat.getDateTimeInstance();
 
 	/**
 	 * Create the rest layer object that is the source of the JSON/XML from the
@@ -69,10 +72,12 @@ public class TemplateModelTransformer {
 
 		MetadataTemplate metadataTemplate = new MetadataTemplate();
 		metadataTemplate.setAuthor(restMetadataTemplate.getAuthor());
-		metadataTemplate.setCreated(restMetadataTemplate.getCreated().toDate());
+		metadataTemplate.setCreated(new Date(restMetadataTemplate.getCreated()));
+
 		metadataTemplate.setDescription(restMetadataTemplate.getDescription());
 		metadataTemplate.setExporter(baseDestinationEnumFromRestDestinationEnum(metadataTemplate.getExporter()));
-		metadataTemplate.setModified(restMetadataTemplate.getModified().toDate());
+		metadataTemplate.setModified(new Date(restMetadataTemplate.getModified()));
+
 		metadataTemplate.setName(restMetadataTemplate.getName());
 		metadataTemplate.setRequired(restMetadataTemplate.getRequired());
 		metadataTemplate.setSource(baseSourceEnumFromRestSourceEnum(restMetadataTemplate.getType()));
@@ -118,8 +123,6 @@ public class TemplateModelTransformer {
 		if (validationStyle == null || validationStyle.isEmpty()) {
 			throw new IllegalArgumentException("null or empty validationStyle");
 		}
-
-		org.irods.jargon.metadatatemplate.ValidationStyleEnum returnValidationStyle;
 
 		ValidationStyleEnum restStyle = validationStyle.get(0);
 		org.irods.jargon.metadatatemplate.ValidationStyleEnum returnStyle;
@@ -289,10 +292,10 @@ public class TemplateModelTransformer {
 
 		RestMetadataTemplate restTemplate = new RestMetadataTemplate();
 		restTemplate.setAuthor(metadataTemplate.getAuthor());
-		restTemplate.setCreated(new DateTime(metadataTemplate.getCreated()));
+		restTemplate.setCreated(metadataTemplate.getCreated().toString());
 		restTemplate.setDescription(metadataTemplate.getDescription());
 		restTemplate.addDestinationItem(restDestinationEnumFromBaseDestinationEnum(metadataTemplate.getExporter()));
-		restTemplate.setModified(new DateTime(metadataTemplate.getModified()));
+		restTemplate.setModified(metadataTemplate.getModified().toString());
 		restTemplate.setName(metadataTemplate.getName());
 		restTemplate.setRequired(metadataTemplate.isRequired());
 		restTemplate.addTypeItem(restTypeEnumFromBaseSourceEnum(metadataTemplate.getSource()));

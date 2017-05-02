@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.joda.time.DateTime;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
  * RestMetadataTemplate
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-03-28T12:18:38.465-04:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-05-01T09:18:29.814-04:00")
 
 public class RestMetadataTemplate {
 	private String uuid = null;
@@ -22,9 +20,9 @@ public class RestMetadataTemplate {
 
 	private String author = null;
 
-	private DateTime created = null;
+	private String created = null;
 
-	private DateTime modified = null;
+	private String modified = null;
 
 	private String version = null;
 
@@ -38,7 +36,7 @@ public class RestMetadataTemplate {
 
 		private String value;
 
-		TypeEnum(final String value) {
+		TypeEnum(String value) {
 			this.value = value;
 		}
 
@@ -58,7 +56,7 @@ public class RestMetadataTemplate {
 
 		private String value;
 
-		DestinationEnum(final String value) {
+		DestinationEnum(String value) {
 			this.value = value;
 		}
 
@@ -74,14 +72,14 @@ public class RestMetadataTemplate {
 
 	private List<RestMetadataTemplateElement> metadataTemplateElements = new ArrayList<RestMetadataTemplateElement>();
 
-	public RestMetadataTemplate uuid(final String uuid) {
+	public RestMetadataTemplate uuid(String uuid) {
 		this.uuid = uuid;
 		return this;
 	}
 
 	/**
 	 * uuid for the tamplate
-	 *
+	 * 
 	 * @return uuid
 	 **/
 	@ApiModelProperty(required = true, value = "uuid for the tamplate")
@@ -89,18 +87,18 @@ public class RestMetadataTemplate {
 		return uuid;
 	}
 
-	public void setUuid(final String uuid) {
+	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
-	public RestMetadataTemplate name(final String name) {
+	public RestMetadataTemplate name(String name) {
 		this.name = name;
 		return this;
 	}
 
 	/**
 	 * display name of the template
-	 *
+	 * 
 	 * @return name
 	 **/
 	@ApiModelProperty(required = true, value = "display name of the template")
@@ -108,18 +106,18 @@ public class RestMetadataTemplate {
 		return name;
 	}
 
-	public void setName(final String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public RestMetadataTemplate description(final String description) {
+	public RestMetadataTemplate description(String description) {
 		this.description = description;
 		return this;
 	}
 
 	/**
 	 * free form description
-	 *
+	 * 
 	 * @return description
 	 **/
 	@ApiModelProperty(value = "free form description")
@@ -127,18 +125,18 @@ public class RestMetadataTemplate {
 		return description;
 	}
 
-	public void setDescription(final String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public RestMetadataTemplate author(final String author) {
+	public RestMetadataTemplate author(String author) {
 		this.author = author;
 		return this;
 	}
 
 	/**
 	 * author of metadata template
-	 *
+	 * 
 	 * @return author
 	 **/
 	@ApiModelProperty(value = "author of metadata template")
@@ -146,56 +144,56 @@ public class RestMetadataTemplate {
 		return author;
 	}
 
-	public void setAuthor(final String author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	public RestMetadataTemplate created(final DateTime created) {
+	public RestMetadataTemplate created(String created) {
 		this.created = created;
 		return this;
 	}
 
 	/**
 	 * create date of template
-	 *
+	 * 
 	 * @return created
 	 **/
 	@ApiModelProperty(required = true, value = "create date of template")
-	public DateTime getCreated() {
+	public String getCreated() {
 		return created;
 	}
 
-	public void setCreated(final DateTime created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 
-	public RestMetadataTemplate modified(final DateTime modified) {
+	public RestMetadataTemplate modified(String modified) {
 		this.modified = modified;
 		return this;
 	}
 
 	/**
 	 * modification date of template
-	 *
+	 * 
 	 * @return modified
 	 **/
 	@ApiModelProperty(required = true, value = "modification date of template")
-	public DateTime getModified() {
+	public String getModified() {
 		return modified;
 	}
 
-	public void setModified(final DateTime modified) {
+	public void setModified(String modified) {
 		this.modified = modified;
 	}
 
-	public RestMetadataTemplate version(final String version) {
+	public RestMetadataTemplate version(String version) {
 		this.version = version;
 		return this;
 	}
 
 	/**
 	 * optional version number
-	 *
+	 * 
 	 * @return version
 	 **/
 	@ApiModelProperty(value = "optional version number")
@@ -203,23 +201,23 @@ public class RestMetadataTemplate {
 		return version;
 	}
 
-	public void setVersion(final String version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 
-	public RestMetadataTemplate type(final List<TypeEnum> type) {
+	public RestMetadataTemplate type(List<TypeEnum> type) {
 		this.type = type;
 		return this;
 	}
 
-	public RestMetadataTemplate addTypeItem(final TypeEnum typeItem) {
-		type.add(typeItem);
+	public RestMetadataTemplate addTypeItem(TypeEnum typeItem) {
+		this.type.add(typeItem);
 		return this;
 	}
 
 	/**
 	 * functional type of metadata template (e.g. form versus automatic)
-	 *
+	 * 
 	 * @return type
 	 **/
 	@ApiModelProperty(required = true, value = "functional type of metadata template (e.g. form versus automatic)")
@@ -227,23 +225,23 @@ public class RestMetadataTemplate {
 		return type;
 	}
 
-	public void setType(final List<TypeEnum> type) {
+	public void setType(List<TypeEnum> type) {
 		this.type = type;
 	}
 
-	public RestMetadataTemplate destination(final List<DestinationEnum> destination) {
+	public RestMetadataTemplate destination(List<DestinationEnum> destination) {
 		this.destination = destination;
 		return this;
 	}
 
-	public RestMetadataTemplate addDestinationItem(final DestinationEnum destinationItem) {
-		destination.add(destinationItem);
+	public RestMetadataTemplate addDestinationItem(DestinationEnum destinationItem) {
+		this.destination.add(destinationItem);
 		return this;
 	}
 
 	/**
 	 * disposition of metadata created by template
-	 *
+	 * 
 	 * @return destination
 	 **/
 	@ApiModelProperty(required = true, value = "disposition of metadata created by template")
@@ -251,18 +249,18 @@ public class RestMetadataTemplate {
 		return destination;
 	}
 
-	public void setDestination(final List<DestinationEnum> destination) {
+	public void setDestination(List<DestinationEnum> destination) {
 		this.destination = destination;
 	}
 
-	public RestMetadataTemplate required(final Boolean required) {
+	public RestMetadataTemplate required(Boolean required) {
 		this.required = required;
 		return this;
 	}
 
 	/**
 	 * indicates whether entry of this metadata is required
-	 *
+	 * 
 	 * @return required
 	 **/
 	@ApiModelProperty(required = true, value = "indicates whether entry of this metadata is required")
@@ -270,25 +268,24 @@ public class RestMetadataTemplate {
 		return required;
 	}
 
-	public void setRequired(final Boolean required) {
+	public void setRequired(Boolean required) {
 		this.required = required;
 	}
 
-	public RestMetadataTemplate metadataTemplateElements(
-			final List<RestMetadataTemplateElement> metadataTemplateElements) {
+	public RestMetadataTemplate metadataTemplateElements(List<RestMetadataTemplateElement> metadataTemplateElements) {
 		this.metadataTemplateElements = metadataTemplateElements;
 		return this;
 	}
 
 	public RestMetadataTemplate addMetadataTemplateElementsItem(
-			final RestMetadataTemplateElement metadataTemplateElementsItem) {
-		metadataTemplateElements.add(metadataTemplateElementsItem);
+			RestMetadataTemplateElement metadataTemplateElementsItem) {
+		this.metadataTemplateElements.add(metadataTemplateElementsItem);
 		return this;
 	}
 
 	/**
 	 * Metadata Template Elements
-	 *
+	 * 
 	 * @return metadataTemplateElements
 	 **/
 	@ApiModelProperty(required = true, value = "Metadata Template Elements")
@@ -296,12 +293,12 @@ public class RestMetadataTemplate {
 		return metadataTemplateElements;
 	}
 
-	public void setMetadataTemplateElements(final List<RestMetadataTemplateElement> metadataTemplateElements) {
+	public void setMetadataTemplateElements(List<RestMetadataTemplateElement> metadataTemplateElements) {
 		this.metadataTemplateElements = metadataTemplateElements;
 	}
 
 	@Override
-	public boolean equals(final java.lang.Object o) {
+	public boolean equals(java.lang.Object o) {
 		if (this == o) {
 			return true;
 		}
@@ -309,16 +306,17 @@ public class RestMetadataTemplate {
 			return false;
 		}
 		RestMetadataTemplate restMetadataTemplate = (RestMetadataTemplate) o;
-		return Objects.equals(uuid, restMetadataTemplate.uuid) && Objects.equals(name, restMetadataTemplate.name)
-				&& Objects.equals(description, restMetadataTemplate.description)
-				&& Objects.equals(author, restMetadataTemplate.author)
-				&& Objects.equals(created, restMetadataTemplate.created)
-				&& Objects.equals(modified, restMetadataTemplate.modified)
-				&& Objects.equals(version, restMetadataTemplate.version)
-				&& Objects.equals(type, restMetadataTemplate.type)
-				&& Objects.equals(destination, restMetadataTemplate.destination)
-				&& Objects.equals(required, restMetadataTemplate.required)
-				&& Objects.equals(metadataTemplateElements, restMetadataTemplate.metadataTemplateElements);
+		return Objects.equals(this.uuid, restMetadataTemplate.uuid)
+				&& Objects.equals(this.name, restMetadataTemplate.name)
+				&& Objects.equals(this.description, restMetadataTemplate.description)
+				&& Objects.equals(this.author, restMetadataTemplate.author)
+				&& Objects.equals(this.created, restMetadataTemplate.created)
+				&& Objects.equals(this.modified, restMetadataTemplate.modified)
+				&& Objects.equals(this.version, restMetadataTemplate.version)
+				&& Objects.equals(this.type, restMetadataTemplate.type)
+				&& Objects.equals(this.destination, restMetadataTemplate.destination)
+				&& Objects.equals(this.required, restMetadataTemplate.required)
+				&& Objects.equals(this.metadataTemplateElements, restMetadataTemplate.metadataTemplateElements);
 	}
 
 	@Override
@@ -351,7 +349,7 @@ public class RestMetadataTemplate {
 	 * Convert the given object to string with each line indented by 4 spaces
 	 * (except the first line).
 	 */
-	private String toIndentedString(final java.lang.Object o) {
+	private String toIndentedString(java.lang.Object o) {
 		if (o == null) {
 			return "null";
 		}

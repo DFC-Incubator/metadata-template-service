@@ -54,19 +54,27 @@ public class MetadataTemplateResolverApiService {
 	public MetadataTemplateList listPublicTemplates()
 			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("listPublicTemplates()");
-		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
+		MetadataTemplateContext context = buildContext();
 		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
-				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
+				.instanceMetadataResolver(context);
 		return TemplateModelTransformer.restMetadataTemplateListFromBaseModel(resolver.listPublicTemplates());
 
+	}
+
+	private MetadataTemplateContext buildContext() {
+		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
+
+		MetadataTemplateContext context = new MetadataTemplateContext();
+		context.setIrodsAccount(irodsAuthentication.getIrodsAccount());
+		return context;
 	}
 
 	public UUID savePublicTemplate(RestMetadataTemplate restMetadataTemplate)
 			throws MetadataTemplateException, MetadataTemplateProcessingException {
 		log.info("savePublicTemplate()");
-		IrodsAuthentication irodsAuthentication = securityContextHelper.obtainIrodsAuthenticationFromContext();
+		MetadataTemplateContext context = buildContext();
 		AbstractMetadataResolver<MetadataTemplateContext> resolver = metadataTemplateServiceFactory
-				.instanceMetadataResolver(irodsAuthentication.getIrodsAccount(), null);
+				.instanceMetadataResolver(context);
 		return resolver.saveTemplate(TemplateModelTransformer.baseMetadataTemplateFromRestModel(restMetadataTemplate),
 				MetadataTemplateLocationTypeEnum.PUBLIC);
 
