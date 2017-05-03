@@ -3,6 +3,8 @@
  */
 package org.irods.jargon.rest.mdtemplate.security;
 
+import java.util.Arrays;
+
 import org.irods.jargon.core.connection.IRODSSession;
 import org.irods.jargon.core.pub.IRODSAccessObjectFactory;
 import org.irods.jargon.rest.configuration.RestConfiguration;
@@ -13,11 +15,15 @@ import org.irods.jargon.rest.utils.RestConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.context.SecurityContextPersistenceFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * Spring security configurer
@@ -101,10 +107,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		log.info("configure()");
 
 		http.authenticationProvider(irodsAuthenticationProvider).authorizeRequests().anyRequest().authenticated().and()
-				.httpBasic().realmName(RestConstants.DFC_REALM).authenticationEntryPoint(irodsBasicAuthEntryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.cors().and().httpBasic().realmName(RestConstants.DFC_REALM)
+				.authenticationEntryPoint(irodsBasicAuthEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(connectionCloseFilter, SecurityContextPersistenceFilter.class);
 		http.csrf().disable();
+
+	}
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(restConfiguration.getCorsOrigins());
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 
 	/**

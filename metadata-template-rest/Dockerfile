@@ -9,7 +9,7 @@ CMD ["/runit.sh"]
 #CMD ["top"]
 
 
-# build: docker build -t diceunc/mdtemplate-rest:4.2.1.1 .
+# build: docker build -t diceunc/mdtemplate:4.2.1.1 .
 
-# run:  docker run -d --rm -p 8080:8080 -v /etc/irods-ext:/etc/irods-ext   -v /home/mconway/webdavcert:/tmp/cert --add-host irods420.irodslocal:172.16.250.101 diceunc/mdtemplate-rest:4.2.1.1
+# run:  docker run -i  -p 8080:8080 -v /etc/irods-ext:/etc/irods-ext   -v /home/mcc/webdavcert:/tmp/cert --add-host irods420.irodslocal:172.16.250.101 diceunc/mdtemplate:4.2.1.1
 
