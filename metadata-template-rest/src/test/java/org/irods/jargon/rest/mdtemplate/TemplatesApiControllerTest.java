@@ -72,9 +72,7 @@ public class TemplatesApiControllerTest {
 		@Bean
 		public RestTemplateBuilder restTemplateBuilder() {
 			return new RestTemplateBuilder().basicAuthorization("test1", "test");
-
 		}
-
 	}
 
 	@Test
